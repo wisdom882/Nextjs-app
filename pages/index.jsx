@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div>
      <Loader show />
-     <button onClick={() => toast.success('Toast me!')}>Toast Me!</button>
+     <button onClick={() => toast.success('wise man!')}>Toast Me!</button>
     </div>
   )
 }

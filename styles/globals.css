@@ -225,6 +225,10 @@ input[type="file"] {
 }
 /* Utilities */
 
+.push-right {
+  margin-right: auto;
+}
+
 .push-left {
   margin-left: auto;
 }
