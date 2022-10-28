@@ -5,7 +5,7 @@ import Loader from '../components/Loader'
 export default function Home() {
   return (
     <div>
-     <Loader show />
+     {/* <Loader show /> */}
      <button onClick={() => toast.success('wise man!')}>Toast Me!</button>
     </div>
   )

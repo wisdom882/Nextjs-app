@@ -8,9 +8,9 @@ export default function Navbar() {
         <nav className='navbar'>
              <ul>
                 <li>
-                    <Link href="/"><button className='btn-logo'>FEED</button></Link>
+                    <Link href="/"><button className='btn-logo'>NXT</button></Link>
                 </li>
-             </ul>
+             
 
             {/* user is signed-in and has username */}
             {username && (
@@ -26,10 +26,11 @@ export default function Navbar() {
 
              {/* user is not signed-in or has not created username */}
              {!username && (
-                  <li className='push-right'>
+                  <li>
                   <Link href="/enter"><button className='btn-blue'>Log in</button></Link>
               </li>
              )}
+             </ul>
         </nav>
     )
 }
