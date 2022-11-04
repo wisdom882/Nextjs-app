@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { UserContext } from '../lib/context'
 import { useContext } from 'react'
+import { UserContext } from '../lib/context'
 
 // top navbar
 export default function Navbar() {

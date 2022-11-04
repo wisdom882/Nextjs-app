@@ -2,12 +2,16 @@ import { auth, firestore, googleAuthProvider } from "../lib/firebase";
 import { UserContext } from "../lib/context";
 import { useCallback, useContext, useEffect, useState } from "react";
 
-export default function EnterPage({}) {
+import debounce from 'lodash.debounce';
+
+export default function EnterPage(props) {
     const {user, username} =  useContext(UserContext)
-    console.log(user)
+    //user signed out <SignInButton/>
+    //user signed in, but missing username <UsernameForm />
+    //user signed in, has username <SignOutButton/>
     return(
         <main>
-            {user ? !username ? <UsernameForm /> : <SignOutButton /> : <SignInButton />}
+            {user ? (!username ? <UsernameForm /> : <SignOutButton />) : <SignInButton />}
         </main>
     )
 }
@@ -65,7 +69,7 @@ function UsernameForm(){
         if(username.length >= 3){
             const ref = firestore.doc(`usernames/${username}`)
             const {exists} = await ref.get();
-            console.log('firestroe read execute!')
+            console.log('firestroe read executed!')
             setIsValid(!exists)
             setLoading(false)
         }
@@ -75,7 +79,7 @@ function UsernameForm(){
         !username && (
             <section>
                 <h3>Choose Username</h3>
-                <form onSubmit={onSubmit}>
+                <form >
                     <input name="username" placeholder="username" value={formValue} onChange={onChange}/>
 
                     <button type="submit" className="btn-green" disabled={!isValid}>Choose</button>
