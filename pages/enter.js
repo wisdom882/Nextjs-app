@@ -44,6 +44,21 @@ function UsernameForm(){
         checkUsername(formValue)
     },[formValue])
 
+    const onSubmit = async (e) => {
+        e.preventDefault();
+
+        //create refs for both documents
+        const userDoc = firestore.doc(`users/${user.uid}`)
+        const usernameDoc = firestore.doc(`usernames/${formValue}`)
+
+        //commit both docs togther as a batch write.
+        const batch = firestore.batch();
+        batch.set(userDoc, {username: formValue});//photoUrl fix later
+        batch.set(usernameDoc, {uid: user.uid});
+
+        await batch.commit();
+    }
+
     const onChange = (e) => {
         // force form value typed in form to match correct format
         const val = e.target.value.toLowerCase();
@@ -79,7 +94,7 @@ function UsernameForm(){
         !username && (
             <section>
                 <h3>Choose Username</h3>
-                <form >
+                <form onSubmit={onSubmit}>
                     <input name="username" placeholder="username" value={formValue} onChange={onChange}/>
 
                     <button type="submit" className="btn-green" disabled={!isValid}>Choose</button>
