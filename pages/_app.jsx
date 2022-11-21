@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
   const userData = useUserData()
   return (
     
-      <UserContext.Provider value={{ user:{}, username:null}}>
+      <UserContext.Provider value={{ user:null, username:null}}>
         <Navbar />
         <Component {...pageProps} />
         {/* <Toaster/> */}
