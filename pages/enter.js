@@ -53,7 +53,7 @@ function UsernameForm(){
 
         //commit both docs togther as a batch write.
         const batch = firestore.batch();
-        batch.set(userDoc, {username: formValue});//photoUrl fix later
+        batch.set(userDoc, {username: formValue, photoURL: user.phtoURL, displayName: user.displayName});
         batch.set(usernameDoc, {uid: user.uid});
 
         await batch.commit();
